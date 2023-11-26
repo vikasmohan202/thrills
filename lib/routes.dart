@@ -1,5 +1,6 @@
 import 'package:trills/pages/home/pages/homePage.dart';
 import 'package:trills/pages/message/pages/messages_page.dart';
+import 'package:trills/post/pages/add_post_page.dart';
 
 import 'pages/gender/pages/gender_page.dart';
 import 'pages/home/pages/view_stories_page.dart';
@@ -14,18 +15,19 @@ import 'pages/venue/pages/venue_page.dart';
 
 class Routes {
   static final allRoutes = {
-    homePage: (_) => HomePage(),
-    matchesPage: (_) => MatchesPage(),
+    homePage: (_) => const HomePage(),
+    matchesPage: (_) => const MatchesPage(),
     profilePage: (_) => ProfilePage(),
-    messagePage: (_) => MessagesPage(),
+    messagePage: (_) => const MessagesPage(),
     viewStoryPage: (_) => ViewStoryPage(),
     interestPage: (_) => InterestsPage(),
-    venuePage: (_) => VenuePage(),
-    genderPage: (_) => GenderSelectPage(),
-    reservePage: (_) => ReservePage(),
+    venuePage: (_) => const VenuePage(),
+    genderPage: (_) => const GenderSelectPage(),
+    reservePage: (_) => const ReservePage(),
     loginPage: (_) => LoginPage(),
-    profileDetailPage: (_) => ProfileDetailPage(),
+    profileDetailPage: (_) => const ProfileDetailPage(),
     signUpPage: (_) => SignUpPage(),
+    addPostPage:(_)=>const AddPostPage(),
   };
 
   static const String homePage = 'home-page';
@@ -40,4 +42,5 @@ class Routes {
   static const String genderPage = 'gender-page';
   static const String reservePage = 'reserve-page';
   static const String profileDetailPage = 'profile-detail-page';
+  static const String addPostPage = 'add-post-page';
 }
