@@ -15,4 +15,5 @@ class URLS {
   static const String sendUserRequest = baseURL + 'request';
   static const String getIncomingRequests = baseURL + 'request/incoming';
   static const String likePost = baseURL + 'post/like/';
+  static const String addPost = baseURL + 'post';
 }
