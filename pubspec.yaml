@@ -90,12 +90,12 @@ flutter:
           style: italic
         - asset: assets/fonts/DM_Sans/static/DMSans-Bold.ttf
           weight: 700
-    - family: Sk-Modernist
-      fonts:
-        - asset: assets/fonts/Sk-Modernist/SK-Modernist-Regular.otf
-        - asset: assets/fonts/Sk-Modernist/SK-Modernist-Bold.otf
-          weight: 700
-        - asset: assets/fonts/Sk-Modernist/SK-Modernist-Mono.otf
+    # - family: Sk-Modernist
+      # fonts:
+      #   - asset: assets/fonts/Sk-Modernist/SK-Modernist-Regular.otf
+      #   - asset: assets/fonts/Sk-Modernist/SK-Modernist-Bold.otf
+      #     weight: 700
+      #   - asset: assets/fonts/Sk-Modernist/SK-Modernist-Mono.otf
         
 
 

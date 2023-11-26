@@ -128,7 +128,6 @@ class _HomePageState extends State<HomePage> {
     return PageView(
       scrollDirection: Axis.horizontal,
       children: [
-        
         //Home Page
         Container(
           width: MediaQuery.sizeOf(context).width,
@@ -196,7 +195,9 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.matchesPage);
+                      },
                       child: Text(
                         'Make Friends',
                         textAlign: TextAlign.center,

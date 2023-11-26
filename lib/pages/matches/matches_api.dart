@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:trills/callHelper.dart';
 import 'package:trills/urls.dart';
 
 class MatchesAPI {
-  getMatches() async {
+  Future<ApiResponseWithData> getMatches() async {
     String token = URLS.token;
     var url = Uri.parse(URLS.getIncomingRequests);
     var response = await http.get(
@@ -21,8 +22,8 @@ class MatchesAPI {
     if (response.statusCode == 200) {
       // print();
       // await Auth().setToken(data['token']);
-      return data;
+      return ApiResponseWithData(data, true);
     }
-    return false;
+    return ApiResponseWithData(data, false);
   }
 }
