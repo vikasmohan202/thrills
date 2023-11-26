@@ -3,6 +3,7 @@ import 'package:trills/all_assets.dart';
 import 'package:trills/pages/home/home_api.dart';
 import 'package:trills/pages/home/widgets/news_widget.dart';
 import 'package:trills/pages/message/pages/messages_page.dart';
+import 'package:trills/post/pages/add_post_page.dart';
 import 'package:trills/routes.dart';
 
 import '../../../cache_magement.dart';
@@ -36,19 +37,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   void showBottomSheetAfterDelay(String Route) async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
+    // ignore: use_build_context_synchronously
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
         return Container(
             height: MediaQuery.of(context).size.height * 0.80,
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             // height: 200, // Adjust the height as needed
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Let\'s Complete your Profile!! ',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
@@ -61,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, Route.toString());
                   },
-                  child: Text('Complete'),
+                  child: const Text('Complete'),
                 )
               ],
             ));
@@ -128,7 +130,6 @@ class _HomePageState extends State<HomePage> {
     return PageView(
       scrollDirection: Axis.horizontal,
       children: [
-        
         //Home Page
         Container(
           width: MediaQuery.sizeOf(context).width,
@@ -151,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'News Feed',
                       style: TextStyle(
                         color: Colors.black,
@@ -166,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.pushNamed(context, Routes.profilePage);
                       },
-                      child: Icon(Icons.manage_accounts_outlined),
+                      child: const Icon(Icons.manage_accounts_outlined),
                     ),
                   ],
                 ),
@@ -189,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                     )
                   ]),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -197,7 +198,17 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 8,
+                          shadowColor: Colors.purple,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 30),
+                          foregroundColor: Colors.black,
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40),
+                          )),
+                      child: const Text(
                         'Make Friends',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -207,41 +218,33 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          elevation: 8,
-                          shadowColor: Colors.purple,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 30),
-                          foregroundColor: Colors.black,
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40),
-                          )),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Post'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.addPostPage);
+                      },
                       style: ElevatedButton.styleFrom(
                           elevation: 8,
                           shadowColor: Colors.purple,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 20, horizontal: 40),
                           foregroundColor: Colors.black,
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40),
                           )),
+                      child: const Text('Post'),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 FutureBuilder(
                     future: getAllPosts(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                       if (snapshot.hasData) {
                         List data = snapshot.data as List;
@@ -259,14 +262,14 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       }
-                      return Center(child: Text("No Data Found"));
+                      return const Center(child: Text("No Data Found"));
                     })
               ],
             ),
           ),
         ),
 
-        MessagesPage()
+        const MessagesPage()
       ],
     );
   }
