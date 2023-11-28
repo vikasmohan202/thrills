@@ -1,5 +1,6 @@
 import 'package:trills/pages/home/pages/homePage.dart';
-import 'package:trills/pages/message/pages/messages_page.dart';
+
+import 'package:trills/pages/message/widget/messages_page.dart';
 import 'package:trills/post/pages/add_post_page.dart';
 
 import 'pages/gender/pages/gender_page.dart';
@@ -27,7 +28,7 @@ class Routes {
     loginPage: (_) => LoginPage(),
     profileDetailPage: (_) => const ProfileDetailPage(),
     signUpPage: (_) => SignUpPage(),
-    addPostPage:(_)=>const AddPostPage(),
+    addPostPage: (_) => const AddPostPage(),
   };
 
   static const String homePage = 'home-page';
