@@ -31,6 +31,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primaryColor: Colors.white,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.black),
           bodyMedium: TextStyle(color: Colors.black),
@@ -51,7 +52,7 @@ class _MyAppState extends State<MyApp> {
 
         useMaterial3: true,
       ),
-      initialRoute: Routes.loginPage,
+      initialRoute: Routes.homePage,
       routes: Routes.allRoutes,
     );
   }
