@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:trills/all_assets.dart';
 import 'package:trills/all_colors.dart';
 import 'package:trills/background.dart';
+import 'package:trills/pages/home/widgets/appbar_back_button.dart';
+import 'package:trills/routes.dart';
 
 class ReservePage extends StatelessWidget {
   const ReservePage({super.key});
@@ -9,16 +11,13 @@ class ReservePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackgroundWidget(
-        Padding: EdgeInsets.only(top: 20, right: 15, left: 15),
+        Padding: const EdgeInsets.only(top: 20, right: 15, left: 15),
         widget: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            leading: Icon(
-              Icons.arrow_back_ios,
-              color: AllCOlors.purple,
-            ),
+            leading: customBackButton(context),
             centerTitle: true,
-            title: Text(
+            title: const Text(
               'Reserve',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -33,7 +32,7 @@ class ReservePage extends StatelessWidget {
           ),
           backgroundColor: Colors.transparent,
           body: ListView(children: [
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
@@ -46,10 +45,10 @@ class ReservePage extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               'Solaria ',
               style: TextStyle(
                 // color: Color(0xFF262628),
@@ -59,7 +58,7 @@ class ReservePage extends StatelessWidget {
                 // height: 0,
               ),
             ),
-            Text(
+            const Text(
               'Solaria adalah restoran lokal asli Indonesia yang berdiri sejak tahun 1995, merupakan restoran keluarga dengan konsep casual dining yang menyajikan menu-menu makanan khas yang disajikan secara fresh food (dimasak setelah makanan dipsesan).',
               style: TextStyle(
                 // color: Color(0xFF262628),
@@ -70,7 +69,7 @@ class ReservePage extends StatelessWidget {
                 // letterSpacing: -0.30,
               ),
             ),
-            Row(
+            const Row(
               children: [
                 Icon(
                   Icons.event_seat_outlined,
@@ -105,10 +104,14 @@ class ReservePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            ElevatedButton(onPressed: () {}, child: Text('Book Venue'))
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.meetupPage);
+                },
+                child: const Text('Book Venue'))
           ]),
         ));
   }

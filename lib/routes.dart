@@ -1,5 +1,6 @@
 import 'package:trills/pages/home/pages/homePage.dart';
 import 'package:trills/pages/message/pages/messages_page.dart';
+import 'package:trills/pages/venue/pages/meetup_page.dart';
 import 'package:trills/post/pages/add_post_page.dart';
 
 import 'pages/gender/pages/gender_page.dart';
@@ -27,7 +28,8 @@ class Routes {
     loginPage: (_) => LoginPage(),
     profileDetailPage: (_) => const ProfileDetailPage(),
     signUpPage: (_) => SignUpPage(),
-    addPostPage:(_)=>const AddPostPage(),
+    addPostPage: (_) => const AddPostPage(),
+    meetupPage: (_) => const MeetupPage()
   };
 
   static const String homePage = 'home-page';
@@ -43,4 +45,5 @@ class Routes {
   static const String reservePage = 'reserve-page';
   static const String profileDetailPage = 'profile-detail-page';
   static const String addPostPage = 'add-post-page';
+  static const String meetupPage = 'meetup-page';
 }
