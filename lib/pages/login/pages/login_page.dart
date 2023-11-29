@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trills/all_assets.dart';
+import 'package:trills/util/constant.dart';
 
 import '../../../border_theme.dart';
 import '../../../cache_magement.dart';
@@ -15,9 +16,20 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  asyncInit() async {
+    setState(() {});
+    await SharedPrefUtil.init();
+    setState(() {});
+  }
 
   String? phone;
   String? otp;
+  @override
+  void initState() {
+    asyncInit();
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,23 +147,12 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 onPressed: () async {
                   final form = _formKey.currentState;
+
                   if (form!.validate()) {
                     form.save();
-                    bool res = true;
-                    // await LoginAPI().login(phone.toString(), otp.toString());
-                    if (res == true) {
-                      //  await CacheMangement().setIsCompleted(false);
-                      bool com = await CacheMangement().getIsCompleted();
-                      if (com == true) {
-                        Navigator.pushReplacementNamed(
-                            context, Routes.homePage);
-                      } else {
-                        Navigator.pushReplacementNamed(
-                            context, Routes.profileDetailPage);
-                      }
-                    } else {
-                      Navigator.pushReplacementNamed(context, Routes.loginPage);
-                    }
+                    SharedPrefUtil.setValue(isLogin, true);
+
+                    Navigator.pushReplacementNamed(context, Routes.homePage);
                   }
                 },
                 child: const Center(child: Text('Continue')),

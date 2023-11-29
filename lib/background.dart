@@ -4,7 +4,7 @@ class BackgroundWidget extends StatelessWidget {
   BackgroundWidget({
     super.key,
     required this.widget,
-    this.Padding = const EdgeInsets.only(top: 50, right: 20, left: 20),
+    this.Padding = const EdgeInsets.only(top: 0, right: 0, left: 0),
   });
   Widget widget;
   EdgeInsets Padding;

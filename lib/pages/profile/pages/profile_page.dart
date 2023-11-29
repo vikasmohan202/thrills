@@ -156,7 +156,7 @@ class ProfilePage extends StatelessWidget {
                                     children: [
                                       Icon(
                                         Icons.location_on_outlined,
-                                        color: AllCOlors.purple,
+                                        color: ColorPallate.purple,
                                       ),
                                       Text(
                                         '1 km',
@@ -220,7 +220,7 @@ class ProfilePage extends StatelessWidget {
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(
                                               width: 1,
-                                              color: AllCOlors.purple),
+                                              color: ColorPallate.purple),
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         ),
@@ -229,7 +229,7 @@ class ProfilePage extends StatelessWidget {
                                         child: Text(
                                           data['interests'][index],
                                           style: TextStyle(
-                                            color: AllCOlors.purple,
+                                            color: ColorPallate.purple,
                                             fontSize: 17,
                                             fontFamily: 'Sk-Modernist',
                                             fontWeight: FontWeight.w700,

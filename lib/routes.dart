@@ -1,3 +1,4 @@
+import 'package:trills/pages/home/mobile_screen_layout.dart';
 import 'package:trills/pages/home/pages/homePage.dart';
 
 import 'package:trills/pages/message/widget/messages_page.dart';
@@ -16,7 +17,7 @@ import 'pages/venue/pages/venue_page.dart';
 
 class Routes {
   static final allRoutes = {
-    homePage: (_) => const HomePage(),
+    homePage: (_) => const MobileScreenLayout(),
     matchesPage: (_) => const MatchesPage(),
     profilePage: (_) => ProfilePage(),
     messagePage: (_) => const MessagesPage(),

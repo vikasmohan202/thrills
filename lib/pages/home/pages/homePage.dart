@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trills/all_assets.dart';
+import 'package:trills/background.dart';
 import 'package:trills/pages/home/home_api.dart';
 import 'package:trills/pages/home/widgets/news_widget.dart';
 import 'package:trills/pages/message/widget/chat_list.dart';
@@ -92,25 +93,7 @@ class _HomePageState extends State<HomePage> {
     // );
   }
 
-  checkCompletion() async {
-    var iscompeleted = await CacheMangement().getIsCompleted();
-    if (iscompeleted == false) {
-      // Navigator.pushReplacementNamed(context, Routes.onboarding);
-      var screenNumber = await CacheMangement().getCurrentScreen();
-      switch (screenNumber) {
-        case 0:
-          showBottomSheetAfterDelay(Routes.profileDetailPage);
-          break;
-        case 1:
-          showBottomSheetAfterDelay(Routes.genderPage);
-          break;
-        case 2:
-          showBottomSheetAfterDelay(Routes.interestPage);
-          break;
-        default:
-      }
-    }
-  }
+ 
 
   final PageController _pageController = PageController(initialPage: 0);
 
@@ -122,156 +105,156 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    checkCompletion();
+   
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      scrollDirection: Axis.horizontal,
-      children: [
-        //Home Page
-        Container(
-          width: MediaQuery.sizeOf(context).width,
-          height: MediaQuery.sizeOf(context).height,
-          // 243,239,254
-          // color:             Color.fromARGB(255, 249, 216, 248),
-          padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                Color.fromARGB(255, 252, 232, 251),
-                Color.fromRGBO(245, 242, 253, 1),
-              ])),
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Column(
+    return BackgroundWidget(
+        widget: Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 50, left: 16, right: 16),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'News Feed',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 28,
-                        fontFamily: 'DM Sans',
-                        fontWeight: FontWeight.w700,
-                        height: 0,
-                        letterSpacing: 0.36,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: const Icon(Icons.manage_accounts_outlined),
-                    ),
-                  ],
+                const Text(
+                  'News Feed',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 28,
+                    fontFamily: 'DM Sans',
+                    fontWeight: FontWeight.w700,
+                    height: 0,
+                    letterSpacing: 0.36,
+                  ),
                 ),
-                SizedBox(
-                  height: 120,
-                  width: double.maxFinite,
-                  child: Row(children: [
-                    StoryWidget(
-                      name: 'Your Story',
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return StoryWidget(
-                              name: 'James',
-                            );
-                          }),
-                    )
-                  ]),
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: InkWell(
+                    onTap: () {},
+                    child: const Icon(Icons.notifications_outlined),
+                  ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, Routes.matchesPage);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          elevation: 8,
-                          shadowColor: Colors.purple,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 40),
-                          foregroundColor: Colors.black,
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40),
-                          )),
-                      child: Text(
-                        'Make Friends',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontFamily: 'DM Sans',
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, Routes.addPostPage);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          elevation: 8,
-                          shadowColor: Colors.purple,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 40),
-                          foregroundColor: Colors.black,
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40),
-                          )),
-                      child: const Text('Post'),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                FutureBuilder(
-                    future: getAllPosts(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                      if (snapshot.hasData) {
-                        List data = snapshot.data as List;
-                        return Expanded(
-                          child: ListView.builder(
-                            itemCount: data.length,
-                            itemBuilder: (context, index) {
-                              return NewsWidget(
-                                description: data[index]['description'],
-                                likes: data[index]['likes'].toString(),
-                                post_id: data[index]['_id'],
-                                user_id: data[index]['user'],
-                              );
-                            },
-                          ),
-                        );
-                      }
-                      return const Center(child: Text("No Data Found"));
-                    })
               ],
             ),
-          ),
+            SizedBox(
+              height: 120,
+              width: double.maxFinite,
+              child: Row(children: [
+                StoryWidget(
+                  name: 'Your Story',
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return StoryWidget(
+                          name: 'James',
+                        );
+                      }),
+                )
+              ]),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 160,
+                  height: 47,
+                  //width: MediaQuery.of(context).size.width * 0.5,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.matchesPage);
+                    },
+                    style: ElevatedButton.styleFrom(
+                        elevation: 8,
+                        shadowColor: Colors.purple,
+                        foregroundColor: Colors.black,
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        )),
+                    child: Text(
+                      'Make Friends',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13.12,
+                        fontFamily: 'DM Sans',
+                        fontWeight: FontWeight.w700,
+                        height: 0.13,
+                        letterSpacing: -0.41,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 160,
+                  height: 47,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.addPostPage);
+                    },
+                    style: ElevatedButton.styleFrom(
+                        elevation: 8,
+                        shadowColor: Colors.purple,
+                        foregroundColor: Colors.black,
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        )),
+                    child: const Text(
+                      'Post',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13.12,
+                        fontFamily: 'DM Sans',
+                        fontWeight: FontWeight.w700,
+                        height: 0.13,
+                        letterSpacing: -0.41,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            FutureBuilder(
+                future: getAllPosts(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.hasData) {
+                    List data = snapshot.data as List;
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          return NewsWidget(
+                            description: data[index]['description'],
+                            likes: data[index]['likes'].toString(),
+                            post_id: data[index]['_id'],
+                            user_id: data[index]['user'],
+                          );
+                        },
+                      ),
+                    );
+                  }
+                  return const Center(child: Text("No Data Found"));
+                })
+          ],
         ),
-
-        MessagesPage()
-      ],
-    );
+      ),
+    ));
   }
 }

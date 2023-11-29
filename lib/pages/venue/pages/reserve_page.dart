@@ -15,7 +15,7 @@ class ReservePage extends StatelessWidget {
             backgroundColor: Colors.transparent,
             leading: Icon(
               Icons.arrow_back_ios,
-              color: AllCOlors.purple,
+              color: ColorPallate.purple,
             ),
             centerTitle: true,
             title: Text(

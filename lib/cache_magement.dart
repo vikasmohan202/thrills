@@ -1,27 +1,71 @@
+
+
+
+//This wrapper over SharedPreferences is needed as flutter doesn't provide
+//non-async method for getting preferences. This is becoming a problem as
+//at some places getting pref in constructor is required and constructors
+//can't be async in flutter.
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CacheMangement {
-  getIsCompleted() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool('isCompleted') == null) {
-      return false;
+class SharedPrefUtil {
+  static late final SharedPreferences preferences;
+  static bool _init = false;
+  static Future init() async {
+    if (_init) return;
+    preferences = await SharedPreferences.getInstance();
+    _init = true;
+    return preferences;
+  }
+
+
+  static void logIn(companyId, userRole, mobile, domain) {
+   
+  }
+
+  static void addLoggedInUserNameAndCompanyImage(userName, image) {
+  
+  }
+
+  static void logOut() {
+  
+  }
+
+  static setValue(String key, Object value) {
+    switch (value.runtimeType) {
+      case String:
+        preferences.setString(key, value as String);
+        break;
+      case bool:
+        preferences.setBool(key, value as bool);
+        break;
+      case int:
+        preferences.setInt(key, value as int);
+        break;
+      default:
+        throw Exception("Not implemented.");
     }
-
-    return prefs.getBool('isCompleted');
   }
 
-  setIsCompleted(bool isCompleted) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isCompleted', isCompleted);
+  static clearValue(String key) {
+    preferences.remove(key);
   }
 
-  getCurrentScreen() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getInt('currentScreen');
+  static Object getValue(String key, Object defaultValue) {
+    switch (defaultValue.runtimeType) {
+      case String:
+        return preferences.getString(key) ?? defaultValue;
+      case bool:
+        return preferences.getBool(key) ?? defaultValue as bool;
+      case int:
+        return preferences.getInt(key) ?? defaultValue as int;
+      default:
+        return defaultValue;
+    }
   }
 
-  setCurrentScreen(int currentScreen) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('currentScreen', currentScreen);
-  }
+ 
+
+ 
+
+ 
 }

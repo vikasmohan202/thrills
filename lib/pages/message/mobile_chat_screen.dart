@@ -41,12 +41,17 @@ class _ChatScreenState extends State<ChatScreen> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 40,
+                          radius: 30,
                           child: CircleAvatar(
-                            radius: 35,
-                            child: Image.asset(
-                              AllAssests.sampleWomen,
+                            radius: 25,
+                            // backgroundColor: Colors.amber,
+                            child: ClipOval(
+                              child: Image.asset(
+                                AllAssests.sampleWomen,
+                                width: 60, // Adjust the width as needed
+                                height: 60, // Adjust the height as needed
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -94,7 +99,6 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                     ],
                   ),
-                  Icon(Icons.meeting_room)
                 ],
               ),
               Expanded(
