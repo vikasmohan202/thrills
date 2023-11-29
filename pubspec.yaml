@@ -45,6 +45,7 @@ dependencies:
   shared_preferences: 
   fluttertoast:
   image_picker:
+  carousel_slider:
 
 dev_dependencies:
   flutter_test:
