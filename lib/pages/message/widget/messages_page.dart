@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:trills/all_assets.dart';
 import 'package:trills/background.dart';
+import 'package:trills/model/message.dart';
 import 'package:trills/pages/home/widgets/story_avatar.dart';
+import 'package:trills/pages/message/message_api.dart';
+import 'package:trills/pages/message/mobile_chat_screen.dart';
+import 'package:trills/pages/message/widget/chat_list.dart';
+import 'package:trills/routes.dart';
 
 class MessagesPage extends StatelessWidget {
   const MessagesPage({super.key});
@@ -31,7 +36,13 @@ class MessagesPage extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
-          SearchBar(),
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
+            child: SearchBar(
+              hintText: 'Search',
+              leading: Icon(Icons.search),
+            ),
+          ),
           SizedBox(
             height: 20,
           ),
@@ -42,6 +53,16 @@ class MessagesPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ListTile(
                     // contentPadding: EdgeInsets.symmetric(vertical: 15),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ChatScreen(
+                                  name: name,
+                                  uid: '',
+                                  isGroupChat: false,
+                                  profilePic: '')));
+                    },
                     leading: CircleAvatar(
                       radius: 30,
                       child: CircleAvatar(

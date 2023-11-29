@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:trills/all_assets.dart';
 import 'package:trills/pages/home/home_api.dart';
 import 'package:trills/pages/home/widgets/news_widget.dart';
-import 'package:trills/pages/message/pages/messages_page.dart';
+import 'package:trills/pages/message/widget/chat_list.dart';
+import 'package:trills/pages/message/widget/messages_page.dart';
 import 'package:trills/post/pages/add_post_page.dart';
 import 'package:trills/routes.dart';
 
@@ -164,9 +165,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, Routes.profilePage);
-                      },
+                      onTap: () {},
                       child: const Icon(Icons.manage_accounts_outlined),
                     ),
                   ],
@@ -197,18 +196,20 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.matchesPage);
+                      },
                       style: ElevatedButton.styleFrom(
                           elevation: 8,
                           shadowColor: Colors.purple,
                           padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 30),
+                              vertical: 20, horizontal: 40),
                           foregroundColor: Colors.black,
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40),
                           )),
-                      child: const Text(
+                      child: Text(
                         'Make Friends',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -269,7 +270,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
 
-        const MessagesPage()
+        MessagesPage()
       ],
     );
   }
