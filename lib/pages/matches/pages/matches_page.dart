@@ -56,7 +56,7 @@ class _MatchesPageState extends State<MatchesPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "matches",
+                        "Matches",
                         style: const TextStyle(
                           color: Color(0xFF5F5B5B),
                           fontSize: 34,

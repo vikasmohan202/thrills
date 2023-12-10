@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
 
         useMaterial3: true,
       ),
-      initialRoute: Routes.homePage,
+      initialRoute: Routes.splashScreen,
       routes: Routes.allRoutes,
     );
   }

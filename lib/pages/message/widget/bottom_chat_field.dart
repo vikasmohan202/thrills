@@ -4,6 +4,7 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:trills/pages/message/message_api.dart';
 import 'package:trills/pages/message/widget/message_enum.dart';
 
 class BottomChatField extends StatefulWidget {
@@ -46,12 +47,14 @@ class _BottomChatFieldState extends State<BottomChatField> {
 
   void sendTextMessage() async {
     if (isShowSendButton) {
+      var respone = MessageApi().sendMessages(_messageController.text);
       // ref.read(chatControllerProvider).sendTextMessage(
       //       context,
       //       _messageController.text.trim(),
       //       widget.recieverUserId,
       //       widget.isGroupChat,
       //     );
+      print(respone);
       setState(() {
         _messageController.text = '';
       });
@@ -263,7 +266,7 @@ class _BottomChatFieldState extends State<BottomChatField> {
                     ),
                     onTap: () {
                       // Your onTap functionality here
-                      // For example: sendTextMessage();
+                      sendTextMessage();
                     },
                   ),
                 ),

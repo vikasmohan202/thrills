@@ -6,6 +6,8 @@ import 'package:trills/pages/home/pages/homePage.dart';
 import 'package:trills/pages/message/widget/messages_page.dart';
 import 'package:trills/pages/profile/pages/profile_page.dart';
 import 'package:trills/pages/profile_detail/profile_detail_page.dart';
+import 'package:trills/pages/venue/pages/meetup_page.dart';
+import 'package:trills/pages/venue/pages/select_place.dart';
 
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({Key? key}) : super(key: key);
@@ -17,7 +19,12 @@ class MobileScreenLayout extends StatefulWidget {
 class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   int _page = 0;
   late PageController pageController; // for tabs animation
-  List<Widget> homeScreenItems = [HomePage(), ProfilePage(), MessagesPage()];
+  List<Widget> homeScreenItems = [
+    HomePage(),
+    MessagesPage(),
+    ProfilePage(),
+    SelectPlace()
+  ];
 
   @override
   void initState() {
@@ -52,9 +59,11 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         children: homeScreenItems,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
+              size: 30,
               Icons.home,
               color: (_page == 0)
                   ? Colors
@@ -66,7 +75,8 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           ),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.search,
+                size: 30,
+                Icons.message,
                 color:
                     (_page == 1) ? Colors.black : ColorPallate.secondaryColor,
               ),
@@ -74,7 +84,8 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
               backgroundColor: ColorPallate.primaryColor),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.add_circle,
+                size: 30,
+                Icons.person,
                 color:
                     (_page == 2) ? Colors.black : ColorPallate.secondaryColor,
               ),
@@ -82,20 +93,21 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
               backgroundColor: ColorPallate.primaryColor),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.favorite,
+              size: 30,
+              Icons.notifications,
               color: (_page == 3) ? Colors.black : ColorPallate.secondaryColor,
             ),
             label: '',
             backgroundColor: ColorPallate.primaryColor,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: (_page == 4) ? Colors.black : ColorPallate.secondaryColor,
-            ),
-            label: '',
-            backgroundColor: ColorPallate.primaryColor,
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(
+          //     Icons.person,
+          //     color: (_page == 4) ? Colors.black : ColorPallate.secondaryColor,
+          //   ),
+          //   label: '',
+          //   backgroundColor: ColorPallate.primaryColor,
+          // ),
         ],
         onTap: navigationTapped,
         currentIndex: _page,

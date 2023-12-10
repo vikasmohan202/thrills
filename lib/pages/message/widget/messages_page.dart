@@ -6,10 +6,14 @@ import 'package:trills/pages/home/widgets/story_avatar.dart';
 import 'package:trills/pages/message/message_api.dart';
 import 'package:trills/pages/message/mobile_chat_screen.dart';
 import 'package:trills/pages/message/widget/chat_list.dart';
+import 'package:trills/pages/venue/pages/meetup_page.dart';
+import 'package:trills/pages/venue/pages/select_place.dart';
 import 'package:trills/routes.dart';
 
 class MessagesPage extends StatelessWidget {
   const MessagesPage({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +21,8 @@ class MessagesPage extends StatelessWidget {
     String lastMessage = 'Last message';
     String lastTexted = 'time';
     String unRead;
+
+
 
     return BackgroundWidget(
         widget: Scaffold(
@@ -60,11 +66,15 @@ class MessagesPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ChatScreen(
+                                builder: (context) => 
+                                
+                                ChatScreen(
                                     name: name,
                                     uid: '',
                                     isGroupChat: false,
-                                    profilePic: '')));
+                                    profilePic: ''))
+                                    
+                                    );
                       },
                       leading: CircleAvatar(
                         radius: 30,
