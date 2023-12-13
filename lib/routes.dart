@@ -1,9 +1,11 @@
+import 'package:trills/pages/home/mobile_screen_layout.dart';
 import 'package:trills/pages/home/pages/homePage.dart';
 
 
 import 'package:trills/pages/message/widget/messages_page.dart';
+import 'package:trills/pages/splash_screen.dart';
 
-import 'package:trills/pages/message/pages/messages_page.dart';
+
 import 'package:trills/pages/venue/pages/meetup_page.dart';
 
 import 'package:trills/post/pages/add_post_page.dart';
@@ -21,7 +23,9 @@ import 'pages/venue/pages/venue_page.dart';
 
 class Routes {
   static final allRoutes = {
-    homePage: (_) => const HomePage(),
+
+    homePage: (_) => const MobileScreenLayout(),
+    splashScreen: (_) => const SplashScreen(),
     matchesPage: (_) => const MatchesPage(),
     profilePage: (_) => ProfilePage(),
     messagePage: (_) => const MessagesPage(),
@@ -40,6 +44,7 @@ class Routes {
   };
 
   static const String homePage = 'home-page';
+  static const String splashScreen = 'splash-Screen';
   static const String matchesPage = 'matches-page';
   static const String profilePage = 'profile-page';
   static const String loginPage = 'login-page';

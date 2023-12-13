@@ -116,7 +116,7 @@ class _InterestsPageState extends State<InterestsPage> {
                 ),
                 TextButton(
                     onPressed: () async {
-                      await CacheMangement().setCurrentScreen(2);
+                    
 
                       Navigator.pushReplacementNamed(context, Routes.homePage);
                     },
@@ -176,7 +176,7 @@ class _InterestsPageState extends State<InterestsPage> {
                       padding: EdgeInsets.all(8.0),
                       decoration: ShapeDecoration(
                         color: data[index]['selected'] == true
-                            ? AllCOlors.purple
+                            ? ColorPallate.purple
                             : Colors.white,
                         shape: RoundedRectangleBorder(
                           side: BorderSide(width: 1, color: Color(0xFFE8E6EA)),
@@ -190,7 +190,7 @@ class _InterestsPageState extends State<InterestsPage> {
                                 size: 30,
                                 color: data[index]['selected'] == true
                                     ? Colors.white
-                                    : AllCOlors.purple),
+                                    : ColorPallate.purple),
 
                             // Icon(
                             //   data[index]['icon'],
@@ -205,7 +205,7 @@ class _InterestsPageState extends State<InterestsPage> {
                                   fontSize: 16,
                                   color: data[index]['selected'] == true
                                       ? Colors.white
-                                      : AllCOlors.purple),
+                                      : ColorPallate.purple),
                             )
                           ]),
                     ),
@@ -225,8 +225,7 @@ class _InterestsPageState extends State<InterestsPage> {
                   print(interests);
                   bool done = await ProfileDetailAPI().addInterests(interests);
                   if (done == true) {
-                    await CacheMangement().setIsCompleted(true);
-                    await CacheMangement().setCurrentScreen(0);
+                   
                     Navigator.pushReplacementNamed(context, Routes.homePage);
                   }
                 },

@@ -4,6 +4,8 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:trills/pages/message/message_api.dart';
+import 'package:trills/pages/message/widget/message_enum.dart';
 
 class BottomChatField extends StatefulWidget {
   final String recieverUserId;
@@ -43,37 +45,39 @@ class _BottomChatFieldState extends State<BottomChatField> {
     isRecorderInit = true;
   }
 
-  // void sendTextMessage() async {
-  //   if (isShowSendButton) {
-  //     ref.read(chatControllerProvider).sendTextMessage(
-  //           context,
-  //           _messageController.text.trim(),
-  //           widget.recieverUserId,
-  //           widget.isGroupChat,
-  //         );
-  //     setState(() {
-  //       _messageController.text = '';
-  //     });
-  //   } else {
-  //     var tempDir = await getTemporaryDirectory();
-  //     var path = '${tempDir.path}/flutter_sound.aac';
-  //     if (!isRecorderInit) {
-  //       return;
-  //     }
-  //     if (isRecording) {
-  //       await _soundRecorder!.stopRecorder();
-  //       sendFileMessage(File(path), MessageEnum.audio);
-  //     } else {
-  //       await _soundRecorder!.startRecorder(
-  //         toFile: path,
-  //       );
-  //     }
+  void sendTextMessage() async {
+    if (isShowSendButton) {
+      var respone = MessageApi().sendMessages(_messageController.text);
+      // ref.read(chatControllerProvider).sendTextMessage(
+      //       context,
+      //       _messageController.text.trim(),
+      //       widget.recieverUserId,
+      //       widget.isGroupChat,
+      //     );
+      print(respone);
+      setState(() {
+        _messageController.text = '';
+      });
+    } else {
+      // var tempDir = await getTemporaryDirectory();
+      // var path = '${tempDir.path}/flutter_sound.aac';
+      // if (!isRecorderInit) {
+      //   return;
+      // }
+      if (isRecording) {
+        // await _soundRecorder!.stopRecorder();
+        // sendFileMessage(File(path), MessageEnum.audio);
+      } else {
+        // await _soundRecorder!.startRecorder(
+        //   toFile: path,
+        // );
+      }
 
-  //     setState(() {
-  //       isRecording = !isRecording;
-  //     });
-  //   }
-  // }
+      setState(() {
+        isRecording = !isRecording;
+      });
+    }
+  }
 
   // void sendFileMessage(
   //   File file,
@@ -153,7 +157,7 @@ class _BottomChatFieldState extends State<BottomChatField> {
     final isShowMessageReply = messageReply != null;
     return Column(
       children: [
-        // isShowMessageReply ? const MessageReplyPreview() : const SizedBox(),
+        //isShowMessageReply ? const MessageReplyPreview() : const SizedBox(),
         Row(
           children: [
             Expanded(
@@ -262,7 +266,7 @@ class _BottomChatFieldState extends State<BottomChatField> {
                     ),
                     onTap: () {
                       // Your onTap functionality here
-                      // For example: sendTextMessage();
+                      sendTextMessage();
                     },
                   ),
                 ),

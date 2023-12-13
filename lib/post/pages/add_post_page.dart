@@ -181,7 +181,7 @@ class _AddPostPageState extends State<AddPostPage> {
         height: 46,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: Colors.purple,
             borderRadius: BorderRadius.circular(6),
             border:
                 Border.all(width: 1, color: Theme.of(context).primaryColor)),
